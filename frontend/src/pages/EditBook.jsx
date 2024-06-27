@@ -15,25 +15,11 @@ const EditBook = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
-        // setLoading(true);
-        // axios
-        //     .get(`https://book-store-or5q.onrender.com/books/${id}`)
-        //     .then((response) => {
-        //         setAuthor(response.data.author)
-        //         setTitle(response.data.title)
-        //         setPublishYear(response.data.publishYear)
-        //         setLoading(false)
-        //         console.log('hello')
-        //     })
-        //     .catch((error) => {
-            //         alert('error occured')
-            //         console.log(error)
-            //     })
             fetchBook()
     }, [])
 
     const fetchBook = async () => {
-        const response = await fetch(`https://book-store-or5q.onrender.com/books/${id}`)
+        const response = await fetch(`http://localhost:5555/books/${id}`)
         const data = await response.json()
         setAuthor(data.author)
         setTitle(data.title)
@@ -49,7 +35,7 @@ const EditBook = () => {
         };
         setLoading(true);
         axios
-            .put(`https://book-store-or5q.onrender.com/books/${id}`, data)
+            .put(`http://localhost:5555/books/${id}`, data)
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar('Book Edited Sucessfully', { variant: 'success' })
